@@ -1,11 +1,13 @@
 import java.io.Serializable;
+import java.sql.Date;
 
 
 public abstract class Person implements Serializable {
 
     private String name;
     private String nationalId;
-
+    private boolean isAlived;
+    private Date birthDate;
   
     public Person(String name, String nationalId) {
 
@@ -32,4 +34,6 @@ public abstract class Person implements Serializable {
     public void setNationalId(String nationalId) {
         this.nationalId = nationalId;
     }
+
+    
 }

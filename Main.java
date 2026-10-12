@@ -1,4 +1,12 @@
 
+import bussiness.Universitysystem;
+import dao.DataStore;
+import model.ClassRoom;
+import model.Course;
+import model.Offering;
+import model.Student;
+import model.Teacher;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +21,7 @@ public class Main {
 
         Universitysystem university;
 
-       
+
         try {
             university = DataStore.load(fileName);
             System.out.println("اطلاعات دانشگاه بارگذاری شد.");
@@ -23,7 +31,7 @@ public class Main {
             System.out.println("سیستم دانشگاهی جدید ساخته شد.");
         }
 
-       
+
         while (true) {
 
             System.out.println("\n===== سیستم مدیریت دانشگاه =====");
@@ -43,7 +51,7 @@ public class Main {
 
             switch (choice) {
 
-               
+
                 case "1": {
 
                     System.out.print("شماره دانشجویی: ");
@@ -53,7 +61,7 @@ public class Main {
                     break;
                 }
 
-               
+
                 case "2": {
 
                     System.out.print("شماره دانشجویی: ");
@@ -78,7 +86,7 @@ public class Main {
                     break;
                 }
 
-             
+
                 case "3": {
 
                     System.out.print("شماره دانشجویی: ");
@@ -120,7 +128,7 @@ public class Main {
                     break;
                 }
 
-            
+
                 case "4": {
 
                     System.out.print("نام دانشجو: ");
@@ -163,7 +171,7 @@ public class Main {
                     break;
                 }
 
-                
+
                 case "5": {
 
                     System.out.print("نام استاد: ");
@@ -197,7 +205,7 @@ public class Main {
                     break;
                 }
 
-                
+
                 case "6": {
 
                     System.out.print("کد درس: ");
@@ -255,7 +263,7 @@ public class Main {
                     break;
                 }
 
-        
+
                 case "7": {
 
                     System.out.print("کد کلاس: ");
@@ -342,9 +350,7 @@ public class Main {
                     System.out.print("کد درس: ");
                     String courseCode = scanner.nextLine().trim();
 
-                    Course course = university.findCourseByCode(
-                            courseCode
-                    );
+                    Course course = university.findCourseByCode(courseCode);
 
                     if (course == null) {
                         System.out.println(
@@ -353,7 +359,7 @@ public class Main {
                         break;
                     }
 
-                   
+
                     List<Teacher> teachers = university.getTeachers();
 
                     if (teachers.isEmpty()) {
@@ -368,7 +374,7 @@ public class Main {
                     for (int i = 0; i < teachers.size(); i++) {
                         System.out.println(
                                 (i + 1) + ". "
-                                + teachers.get(i).getName()
+                                        + teachers.get(i).getName()
                         );
                     }
 
@@ -402,12 +408,7 @@ public class Main {
                             break;
                         }
 
-                        Offering offering = new Offering(
-                                offeringCode,
-                                course,
-                                teacher,
-                                semester
-                        );
+                        Offering offering = new Offering(offeringCode, course, teacher, semester);
 
                         university.addOffering(offering);
 
@@ -431,7 +432,7 @@ public class Main {
                     break;
                 }
 
-     
+
                 case "0": {
 
                     saveUniversity(university, fileName);

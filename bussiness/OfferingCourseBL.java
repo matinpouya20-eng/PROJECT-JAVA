@@ -1,1 +1,4 @@
-package model;
+package bussiness;
+public class OfferingCourseBL {
+
+}

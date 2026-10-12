@@ -1,3 +1,6 @@
+package bussiness;
+
+import model.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,12 +21,11 @@ public class Universitysystem implements Serializable {
 
     private List<ClassRoom> classRooms = new ArrayList<>();
 
-  
+
     private List<Offering> offerings = new ArrayList<>();
 
-   
-    private List<Enrollment> enrollments = new ArrayList<>();
 
+    private List<Enrollment> enrollments = new ArrayList<>();
 
 
     public void addStudent(Student student) {
@@ -51,7 +53,6 @@ public class Universitysystem implements Serializable {
     }
 
 
-
     public Student findStudentByNumber(String studentNumber) {
 
         for (Student student : students) {
@@ -61,13 +62,12 @@ public class Universitysystem implements Serializable {
             }
         }
 
-     
+
         return null;
     }
 
 
-  
-    public <courses> Course findCourseByCode(String courseCode) {
+    public Course findCourseByCode(String courseCode) {
 
         for (Course course : courses) {
 
@@ -80,7 +80,6 @@ public class Universitysystem implements Serializable {
     }
 
 
-  
     public Offering findOfferingByCode(String offeringCode) {
 
         for (Offering offering : offerings) {
@@ -94,7 +93,6 @@ public class Universitysystem implements Serializable {
     }
 
 
-  
     public ClassRoom findClassRoom(String classCode) {
 
         for (ClassRoom classRoom : classRooms) {
@@ -108,18 +106,17 @@ public class Universitysystem implements Serializable {
     }
 
 
-   
     public boolean enrollStudent(
             String studentNumber,
             String offeringCode) {
 
-  
+
         Student student = findStudentByNumber(studentNumber);
 
 
         Offering offering = findOfferingByCode(offeringCode);
 
- 
+
         if (student == null || offering == null) {
             return false;
         }
@@ -146,14 +143,13 @@ public class Universitysystem implements Serializable {
         Enrollment enrollment =
                 new Enrollment(student, offering);
 
-  
+
         enrollments.add(enrollment);
 
         return true;
     }
 
 
-   
     public boolean recordGrade(
             String studentNumber,
             String offeringCode,
@@ -173,7 +169,7 @@ public class Universitysystem implements Serializable {
 
             if (sameStudent && sameOffering) {
 
-             
+
                 enrollment.setGrade(grade);
 
                 return true;
@@ -185,10 +181,9 @@ public class Universitysystem implements Serializable {
     }
 
 
-
     public void printTranscript(String studentNumber) {
 
-        
+
         Student student = findStudentByNumber(studentNumber);
 
         if (student == null) {
@@ -202,7 +197,7 @@ public class Universitysystem implements Serializable {
 
         boolean found = false;
 
-        
+
         for (Enrollment enrollment : enrollments) {
 
             if (enrollment.getStudent()
@@ -215,14 +210,14 @@ public class Universitysystem implements Serializable {
 
                 System.out.println(
                         "Course: " +
-                        enrollment.getOffering()
-                                .getCourse()
-                                .getCourseName()
+                                enrollment.getOffering()
+                                        .getCourse()
+                                        .getCourseName()
                 );
 
                 System.out.println(
                         "Semester: " +
-                        enrollment.getOffering().getSemester()
+                                enrollment.getOffering().getSemester()
                 );
 
                 if (enrollment.hasGrade()) {
@@ -246,14 +241,13 @@ public class Universitysystem implements Serializable {
     }
 
 
-    
     public List<Enrollment> getEnrollments() {
         return enrollments;
     }
 
 
     public List<Teacher> getTeachers() {
-       
+
         throw new UnsupportedOperationException("Unimplemented method 'getTeachers'");
     }
 }
